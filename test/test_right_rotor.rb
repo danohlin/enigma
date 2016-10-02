@@ -12,7 +12,13 @@ class RightRotorTest < Minitest::Test
     assert_equal @machine.crypt("d"), 5
   end
   
-  def test_right_rotor
-    assert_equal @machine.crypt("d"), 5
+  def test_right_rotor_pass_left
+    assert_equal @right_rotor.pass_left(3), 5
   end
+  
+  def test_right_rotor_pass_right
+    assert_equal @right_rotor.pass_right(5), 3
+  end
+  
+
 end

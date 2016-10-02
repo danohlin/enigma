@@ -1,15 +1,17 @@
 class Rotor
 
+  def path_to_resources
+      File.join(File.dirname(File.expand_path(__FILE__)), @file_name)
+  end
+  #puts path_to_resources
+
   def initialize(rotor_number, position)
     @rotor_number = rotor_number
     @position = position
     
     @file_name = "rotors/r#{@rotor_number}.txt"
     
-    def path_to_resources
-      File.join(File.dirname(File.expand_path(__FILE__)), @file_name)
-    end
-    #puts path_to_resources
+
     #puts File.read(path_to_resources)
     rotor_text = File.read(path_to_resources)
     #letter based wiring
