@@ -27,7 +27,7 @@ class Rotor
   end
   
   def pass_right(input)
-    @wiring.index(input)
+    @num_wiring.index(input)
   end
 
 end

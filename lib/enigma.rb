@@ -3,7 +3,7 @@ class Enigma
   require_relative './enigma/Rotor.rb'
   
   def self.on
-    puts "class - I'm on"
+    return "class - I'm on"
   end
   
   def initialize()
@@ -12,7 +12,7 @@ class Enigma
   
   def crypt(text)
     #puts text.swapcase
-    
+
     @right_rotor.pass_left((text.ord - 'A'.ord) % 26)
     
   end
@@ -20,7 +20,7 @@ class Enigma
 
   
   def on
-    puts "I'm on"
+    return "I'm on"
   end
   
   
