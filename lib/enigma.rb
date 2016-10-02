@@ -12,7 +12,7 @@ class Enigma
   
   def crypt(text)
     #puts text.swapcase
-
+    text.upcase!
     @right_rotor.pass_left((text.ord - 'A'.ord) % 26)
     
   end
@@ -31,7 +31,7 @@ class Enigma
     #machine.on
     
     puts "Enter letter to encrypt:"
-    plaintext = STDIN.gets.chomp.upcase
+    plaintext = STDIN.gets.chomp
     puts machine.crypt(plaintext)
   
   end
