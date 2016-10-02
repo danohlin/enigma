@@ -19,15 +19,15 @@ class Rotor
     @wiring.each {|i| @num_wiring.push((i.ord - 'A'.ord) % 26)}
   end
 
-  def pass_left(letter)
+  def pass_left(input)
     #letter based wiring
-    p @wiring[(letter.ord - 'A'.ord) % 26]
+    #@wiring[input]
     #number based wiring
-    @num_wiring[(letter.ord - 'A'.ord) % 26]
+    @num_wiring[input]
   end
   
-  def pass_right(letter)
-    @wiring.index(letter)
+  def pass_right(input)
+    @wiring.index(input)
   end
 
 end

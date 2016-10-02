@@ -13,7 +13,7 @@ class Enigma
   def crypt(text)
     #puts text.swapcase
     
-    @right_rotor.pass_left(text)
+    @right_rotor.pass_left((text.ord - 'A'.ord) % 26)
     
   end
   
