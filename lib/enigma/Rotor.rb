@@ -14,6 +14,7 @@ class Rotor
 
     #puts File.read(path_to_resources)
     rotor_text = File.read(path_to_resources)
+    #puts rotor_text
     #letter based wiring
     @wiring = rotor_text.split("")
     #number based wiring

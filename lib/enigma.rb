@@ -8,13 +8,15 @@ class Enigma
   
   def initialize()
     @right_rotor = Rotor.new(1, "right")
+    @middle_rotor = Rotor.new(2, "middle")
   end
   
   def crypt(text)
     #puts text.swapcase
     text.upcase!
-    @right_rotor.pass_left((text.ord - 'A'.ord) % 26)
-    
+    right_mid = @right_rotor.pass_left((text.ord - 'A'.ord) % 26)
+    mid_left = @middle_rotor.pass_left(right_mid)
+    mid_left
   end
   
 

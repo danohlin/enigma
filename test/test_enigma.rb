@@ -16,5 +16,9 @@ class EnigmaTest < Minitest::Test
     assert @machine
     assert_equal "I'm on", @machine.on
   end
+  
+  def test_machine_right_mid_rotor
+    assert_equal @machine.crypt("d"), 8
+  end
 
 end
