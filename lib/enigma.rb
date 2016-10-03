@@ -9,6 +9,7 @@ class Enigma
   def initialize()
     @right_rotor = Rotor.new(1, "right")
     @middle_rotor = Rotor.new(2, "middle")
+    @left_rotor = Rotor.new(3, "left")
   end
   
   def crypt(text)
@@ -16,7 +17,8 @@ class Enigma
     text.upcase!
     right_mid = @right_rotor.pass_left((text.ord - 'A'.ord) % 26)
     mid_left = @middle_rotor.pass_left(right_mid)
-    mid_left
+    left_mid = @left_rotor.pass_left(mid_left)
+    left_mid
   end
   
 
