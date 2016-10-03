@@ -13,16 +13,24 @@ class Enigma
     @reflector = Rotor.new("b", "reflector")
   end
   
-  def crypt(text)
-    #puts text.swapcase
-    text.upcase!
-    right_mid = @right_rotor.pass_left((text.ord - 'A'.ord) % 26)
+  def chop_text(plaintext)
+    cyphertext = ""
+    plaintext.gsub!(/[^a-z]/i, '')
+    plaintext.upcase!
+    plaintext.split("").each do |i|
+      cyphertext << crypt(i)
+    end
+    return cyphertext
+  end
+  
+  def crypt(letter)
+    right_mid = @right_rotor.pass_left((letter.ord - 'A'.ord) % 26)
     mid_left = @middle_rotor.pass_left(right_mid)
     left_reflector = @left_rotor.pass_left(mid_left)
     reflector_left = @reflector.pass_left(left_reflector)
     left_mid = @left_rotor.pass_right(reflector_left)
     mid_right = @middle_rotor.pass_right(left_mid)
-    p post_right = @right_rotor.pass_right(mid_right)
+    post_right = @right_rotor.pass_right(mid_right)
     (post_right + 65).chr
   end
   
@@ -41,7 +49,8 @@ class Enigma
     
     puts "Enter letter to encrypt:"
     plaintext = STDIN.gets.chomp
-    puts machine.crypt(plaintext)
+
+    puts machine.chop_text(plaintext)
   
   end
   

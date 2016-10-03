@@ -18,7 +18,11 @@ class EnigmaTest < Minitest::Test
   end
   
   def test_machine_right_mid_left_reflect_left_mid_right
-    assert_equal @machine.crypt("d"), "U"
+    assert_equal @machine.crypt("D"), "U"
+  end
+  
+  def test_machine_multichar_encrypt
+    assert_equal @machine.chop_text("dd"), "UU"
   end
 
 end
