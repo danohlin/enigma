@@ -19,8 +19,11 @@ class Enigma
     right_mid = @right_rotor.pass_left((text.ord - 'A'.ord) % 26)
     mid_left = @middle_rotor.pass_left(right_mid)
     left_reflector = @left_rotor.pass_left(mid_left)
-    post_reflector = @reflector.pass_left(left_reflector)
-    post_reflector
+    reflector_left = @reflector.pass_left(left_reflector)
+    left_mid = @left_rotor.pass_right(reflector_left)
+    mid_right = @middle_rotor.pass_right(left_mid)
+    p post_right = @right_rotor.pass_right(mid_right)
+    (post_right + 65).chr
   end
   
 

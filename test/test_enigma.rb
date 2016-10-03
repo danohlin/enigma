@@ -17,8 +17,8 @@ class EnigmaTest < Minitest::Test
     assert_equal "I'm on", @machine.on
   end
   
-  def test_machine_right_mid_left_reflect
-    assert_equal @machine.crypt("d"), 1
+  def test_machine_right_mid_left_reflect_left_mid_right
+    assert_equal @machine.crypt("d"), "U"
   end
 
 end
