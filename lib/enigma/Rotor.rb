@@ -5,12 +5,12 @@ class Rotor
   end
   #puts path_to_resources
 
-  def initialize(rotor_number, position, ring_setting)
+  def initialize(rotor_number, position, ring_setting, ground_setting)
     @rotor_number = rotor_number
     @position = position
     @ring_setting = ring_setting
+    @indicator = ground_setting
     @file_name = "rotors/r#{@rotor_number}.txt"
-    
 
     #puts File.read(path_to_resources)
     rotor_text = File.read(path_to_resources)
@@ -21,16 +21,20 @@ class Rotor
     @num_wiring = []
     @wiring.each {|i| @num_wiring.push((i.ord - 'A'.ord) % 26)}
   end
+  
+  def rotate()
+    @indicator = (@indicator + 1) % 26
+  end
 
   def pass_left(input)
     #letter based wiring
     #@wiring[input]
     #number based wiring
-    (@num_wiring[(input - @ring_setting) % 26] + @ring_setting) % 26
+    (@num_wiring[(input - @ring_setting + @indicator) % 26] + @ring_setting - @indicator) % 26
   end
   
   def pass_right(input)
-    (@num_wiring.index((input - @ring_setting) % 26) + @ring_setting) %26
+    (@num_wiring.index((input - @ring_setting + @indicator) % 26) + @ring_setting - @indicator) % 26
   end
 
 end

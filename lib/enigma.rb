@@ -9,11 +9,10 @@ class Enigma
 
   def initialize()
     settings = YAML::load_file(File.join(File.dirname(File.expand_path(__FILE__)), "settings.yml"))
-    #p settings["rotors"]["right"]
-    @right_rotor = Rotor.new(settings["rotors"]["right"], "right", settings["ring_setting"]["right"])
-    @middle_rotor = Rotor.new(settings["rotors"]["middle"], "middle", settings["ring_setting"]["middle"])
-    @left_rotor = Rotor.new(settings["rotors"]["left"], "left", settings["ring_setting"]["left"])
-    @reflector = Rotor.new(settings["rotors"]["reflector"], "reflector", 0)
+    @right_rotor = Rotor.new(settings["rotors"]["right"], "right", settings["ring_setting"]["right"], settings["ground_setting"]["right"])
+    @middle_rotor = Rotor.new(settings["rotors"]["middle"], "middle", settings["ring_setting"]["middle"], settings["ground_setting"]["middle"])
+    @left_rotor = Rotor.new(settings["rotors"]["left"], "left", settings["ring_setting"]["left"], settings["ground_setting"]["left"])
+    @reflector = Rotor.new(settings["rotors"]["reflector"], "reflector", 0, 0)
   end
   
   def chop_text(plaintext)
@@ -27,6 +26,7 @@ class Enigma
   end
   
   def crypt(letter)
+    @right_rotor.rotate()
     right_mid = @right_rotor.pass_left((letter.ord - 'A'.ord) % 26)
     mid_left = @middle_rotor.pass_left(right_mid)
     left_reflector = @left_rotor.pass_left(mid_left)

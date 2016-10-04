@@ -7,3 +7,8 @@ ring_setting:
   right: 0
   middle: 0
   left: 0
+ground_setting:
+  right: 25
+  middle: 0
+  left: 0
+  

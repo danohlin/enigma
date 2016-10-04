@@ -22,7 +22,7 @@ class EnigmaTest < Minitest::Test
   end
   
   def test_machine_multichar_encrypt #only works if all rings are set to 0
-    assert_equal @machine.chop_text("dd"), "UU"
+    assert_equal @machine.chop_text("ddd"), "UOM"
   end
 
 end
