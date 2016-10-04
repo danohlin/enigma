@@ -26,11 +26,11 @@ class Rotor
     #letter based wiring
     #@wiring[input]
     #number based wiring
-    (@num_wiring[input - @ring_setting] + @ring_setting)
+    (@num_wiring[(input - @ring_setting) % 26] + @ring_setting) % 26
   end
   
   def pass_right(input)
-    (@num_wiring.index(input - @ring_setting) + @ring_setting)
+    (@num_wiring.index((input - @ring_setting) % 26) + @ring_setting) %26
   end
 
 end
