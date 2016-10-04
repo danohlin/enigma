@@ -4,7 +4,7 @@ require 'enigma.rb'
 class RightRotorTest < Minitest::Test
   
   def setup
-    @right_rotor = Rotor.new(1, "right")
+    @right_rotor = Rotor.new(1, "right", 0)
   end
   
   

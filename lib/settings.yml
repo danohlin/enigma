@@ -3,4 +3,7 @@ rotors:
   middle: 2
   left: 3
   reflector: b
-  
+ring_setting: 
+  right: 0
+  middle: 0
+  left: 0

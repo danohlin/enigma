@@ -10,10 +10,10 @@ class Enigma
   def initialize()
     settings = YAML::load_file(File.join(File.dirname(File.expand_path(__FILE__)), "settings.yml"))
     #p settings["rotors"]["right"]
-    @right_rotor = Rotor.new(settings["rotors"]["right"], "right")
-    @middle_rotor = Rotor.new(settings["rotors"]["middle"], "middle")
-    @left_rotor = Rotor.new(settings["rotors"]["left"], "left")
-    @reflector = Rotor.new(settings["rotors"]["reflector"], "reflector")
+    @right_rotor = Rotor.new(settings["rotors"]["right"], "right", settings["ring_setting"]["right"])
+    @middle_rotor = Rotor.new(settings["rotors"]["middle"], "middle", settings["ring_setting"]["middle"])
+    @left_rotor = Rotor.new(settings["rotors"]["left"], "left", settings["ring_setting"]["left"])
+    @reflector = Rotor.new(settings["rotors"]["reflector"], "reflector", 0)
   end
   
   def chop_text(plaintext)

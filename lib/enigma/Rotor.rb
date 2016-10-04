@@ -5,10 +5,10 @@ class Rotor
   end
   #puts path_to_resources
 
-  def initialize(rotor_number, position)
+  def initialize(rotor_number, position, ring_setting)
     @rotor_number = rotor_number
     @position = position
-    
+    @ring_setting = ring_setting
     @file_name = "rotors/r#{@rotor_number}.txt"
     
 
@@ -26,11 +26,11 @@ class Rotor
     #letter based wiring
     #@wiring[input]
     #number based wiring
-    @num_wiring[input]
+    (@num_wiring[input - @ring_setting] + @ring_setting)
   end
   
   def pass_right(input)
-    @num_wiring.index(input)
+    (@num_wiring.index(input - @ring_setting) + @ring_setting)
   end
 
 end
