@@ -4,8 +4,9 @@ require 'enigma.rb'
 class RightRotorTest < Minitest::Test
   
   def setup
-    @right_rotor = Rotor.new(1, "right", 0, 25)
-    @right_rotor_ring_1 = Rotor.new(1, "right", 1, 25)
+    h = {1=>17}
+    @right_rotor = Rotor.new(1, "right", 0, 25, h)
+    @right_rotor_ring_1 = Rotor.new(1, "right", 1, 25, h)
   end
   
   
