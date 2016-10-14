@@ -1,6 +1,7 @@
 class Enigma
   
   require_relative './enigma/Rotor.rb'
+  require_relative './enigma/Plugboard.rb'
   require 'yaml'
   
   attr_accessor :right_rotor
@@ -18,6 +19,7 @@ class Enigma
     $middle_rotor = Rotor.new(settings["rotors"]["middle"], "middle", settings["ring_setting"]["middle"], settings["ground_setting"]["middle"], rotor_settings["notches"][settings["rotors"]["middle"]])
     $left_rotor = Rotor.new(settings["rotors"]["left"], "left", settings["ring_setting"]["left"], settings["ground_setting"]["left"], rotor_settings["notches"][settings["rotors"]["left"]])
     @reflector = Rotor.new(settings["rotors"]["reflector"], "reflector", 0, 0, 0)
+    @plugboard = Plugboard.new(settings["plugboard"])
   end
   
   def chop_text(plaintext)
@@ -33,14 +35,16 @@ class Enigma
   def crypt(letter)
     $middle_rotor.rotate()
     $right_rotor.rotate()
-    right_mid = $right_rotor.pass_left((letter.ord - 'A'.ord) % 26)
+    p plugboard_in = @plugboard.pass((letter.ord - 'A'.ord) % 26)
+    right_mid = $right_rotor.pass_left(plugboard_in)
     mid_left = $middle_rotor.pass_left(right_mid)
     left_reflector = $left_rotor.pass_left(mid_left)
     reflector_left = @reflector.pass_left(left_reflector)
     left_mid = $left_rotor.pass_right(reflector_left)
     mid_right = $middle_rotor.pass_right(left_mid)
-    post_right = $right_rotor.pass_right(mid_right)
-    (post_right + 65).chr
+    p post_right = $right_rotor.pass_right(mid_right)
+    p plugboard_out = @plugboard.pass(post_right)
+    (plugboard_out + 65).chr
   end
   
 
